@@ -5,7 +5,7 @@ var router = express.Router();
 require('../models/connection');
 const Tweet = require('../models/tweet');
 
-const { checkBody } = require('../modules/checkBody');
+
 
 
 router.post('/saveTweet', (req, res) => {
@@ -33,5 +33,18 @@ router.get('/showTweet/:token', (req, res) => {
         }
     });
 });
+
+router.delete('/deleteTweet/:tweet', (req, res) => {
+    Tweet
+    .deleteOne({ content: req.params.tweet })
+    .then(({ deletedCount }) => {
+    Tweet
+    .find({ content: req.params.tweet })
+    .then(data => {
+            res.json({ result: deletedCount > 0, data })
+        })
+    })
+})
+
 
 module.exports = router
