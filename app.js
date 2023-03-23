@@ -8,7 +8,7 @@ const fetch = require('node-fetch');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var tweetsRouter = require('../backend/routes/tweets')
+var tweetsRouter = require('./routes/tweets')
 
 var app = express();
 
