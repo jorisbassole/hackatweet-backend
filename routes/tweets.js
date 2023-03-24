@@ -15,23 +15,24 @@ router.post('/saveTweet', (req, res) => {
         username: req.body.username,
         token: req.body.token,
         content: req.body.content,
-        date: req.body.date
+    
     });
 
     newTweet.save().then(datatweet => {
-        res.json({ result: true, username: datatweet.username, content: datatweet.content });
+        res.json({ result: true, username: datatweet.username, content: datatweet.content});
     })
 }
 );
 ;
 
 
-router.get('/showTweet/:token', (req, res) => {
-    Tweet.findOne({ token: req.params.token }).then(data => {
-        if (data) {
-            res.json({ result: true, tweet: data.content, token: data.token });
+router.get('/showTweets', (req, res) => {
+    Tweet.find()
+    .then(tweets => {
+        if (tweets) {
+            res.json({tweets});
         } else {
-            res.json({ result: false, error: 'user not found' });
+            res.json({ result: false});
         }
     });
 });
