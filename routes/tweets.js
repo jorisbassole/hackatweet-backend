@@ -11,9 +11,11 @@ const Tweet = require('../models/tweet');
 router.post('/saveTweet', (req, res) => {
 
     const newTweet = new Tweet({
+        firstname:req.body.firstname,
         username: req.body.username,
         token: req.body.token,
-        content: req.body.content
+        content: req.body.content,
+        date: req.body.date
     });
 
     newTweet.save().then(datatweet => {
